@@ -2,28 +2,28 @@ use std::{thread::sleep, time::Duration};
 
 fn main() {
 
-    // Constante.
-    const SCREEN_WIDTH: usize = 80;
-    const SCREEN_HEIGHT: usize = 22;
+    // Constants.
+    const SCREEN_WIDTH: usize = 160;
+    const SCREEN_HEIGHT: usize = 44;
 
-    const R1: f64 = 1.0;                                           // R1 is the radius of the donut.
-    const R2: f64 = 2.0;                                           // R2 is the point where the donut is centred.
-    const K2: f64 = 5.0;                                           // K2 is the distance between the user and the donut.
+    const R1: f64 = 1.0;                                                     // R1 is the radius of the donut.
+    const R2: f64 = 2.0;                                                     // R2 is the point where the donut is centred.
+    const K2: f64 = 5.0;                                                     // K2 is the distance between the user and the donut.
     const K1: f64 = (SCREEN_WIDTH as f64) * K2 * 1.5 / (8.0 * (R1 + R2));    // K1 is z' distance between the user and the screen.
 
-    let mut a: f64 = 1.0;
-    let mut b: f64 = 1.0;                                              // A and B are, respectively, the rotation around the x-axis and the z-axis.
+    let mut a: f64 = 1.0;                                            // A and B are, respectively, the rotation around the x-axis and the z-axis.
+    let mut b: f64 = 1.0;                                            
     
     let theta_space: f64 = 0.07;                                     // Theta are the angle spacing to build the cercle. 
     let phi_space: f64 = 0.02;
     let pi2: f64 = 6.28;
 
-    let ascii = ['.', ',' ,'-', '~', ':', ';', '=', '!', '*', '#', '$', '@'];
+    let ascii = ['.', ',' ,'-', '~', ':', ';', '=', '!', '*', '#', '$', '@'];   // Ascii character from dark to bright. 
     
     // Main loop.
     loop {
         let mut output = [' '; SCREEN_WIDTH * SCREEN_HEIGHT];      // Output.
-        let mut zbuffer = [0.0; SCREEN_WIDTH * SCREEN_HEIGHT];       // Z buffer for depth.
+        let mut zbuffer = [0.0; SCREEN_WIDTH * SCREEN_HEIGHT];     // Z buffer for depth.
         
         // Clear screen.
         println!("\x1b[2J");
@@ -31,7 +31,7 @@ fn main() {
         a += 0.07;
         b += 0.03;
 
-        // // Compute sinus and cosinus.
+        // Compute sinus and cosinus.
         let cos_a: f64 = a.sin();
         let sin_a: f64 = a.cos();
         let cos_b: f64 = b.cos();
@@ -68,14 +68,14 @@ fn main() {
             }   
         }
 
-        
+        // Display the frame.
         for i in 0..output.len() {
             print!("{}", output[i]);
-            if i % 80 == 0 { println!();}
+            if i % SCREEN_WIDTH == 0 { println!();}
 
         }
         
         // Sleep.
-        sleep(Duration::from_millis(50));
+        sleep(Duration::from_millis(80));
     }
 }
