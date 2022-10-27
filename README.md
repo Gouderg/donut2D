@@ -16,9 +16,7 @@ $$
     ox * (\cos B \cos\phi + \sin A \sin B \sin\phi) - oy * \cos A * \sin B \\
     ox * (\cos\phi \sin B - \cos B \sin A \sin\phi) + oy * \cos A * \cos B \\
     ox * \cos A \sin\phi + oy * \sin A
-
-  \end{pmatrix}
-$$
+  \end{pmatrix}$$
 
 ## Calculate the luminance.
 
